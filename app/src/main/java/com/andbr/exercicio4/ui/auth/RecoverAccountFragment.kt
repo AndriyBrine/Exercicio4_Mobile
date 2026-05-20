@@ -9,7 +9,6 @@ import com.andbr.exercicio4.R
 import com.andbr.exercicio4.databinding.FragmentRecoverAccountBinding
 
 class RecoverAccountFragment : Fragment() {
-
     private var _binding: FragmentRecoverAccountBinding? = null
     private val binding get() = _binding!!
 
