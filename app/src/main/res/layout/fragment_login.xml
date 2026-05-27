@@ -52,6 +52,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/buttonLogin"
             android:text="Login"
             android:textColor="@color/color_default"
             app:backgroundTint="@null"
@@ -91,7 +92,16 @@
             tools:visibility="visible"
             android:visibility="invisible"/>
 
-
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Aluno: Andriy"
+            android:layout_gravity="center"
+            android:textColor="@color/white"/>
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
