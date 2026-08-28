@@ -8,14 +8,16 @@ import com.andbr.exercicio4.data.model.Task
 import com.andbr.exercicio4.databinding.ItemTaskBinding
 import android.content.Context
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import com.andbr.exercicio4.data.model.Status
 import com.andbr.exercicio4.R
+import androidx.recyclerview.widget.ListAdapter
+
 
 class TaskAdapter(
     private val context: Context,
-    private val taskList: List<Task>,
     private val taskSelected: (Task, Int) -> Unit
-) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
+): ListAdapter<Task, TaskAdapter.MyViewHolder>(DIFF_CALBACK) {
 
     companion object{
         val SELECT_BACK: Int = 1
@@ -23,19 +25,34 @@ class TaskAdapter(
         val SELECT_EDIT: Int = 3
         val SELECT_DETAILS: Int = 4
         val SELECT_NEXT: Int = 5
+
+
+        private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Task>() {
+            override fun areItemsTheSame(
+                oldItem: Task,
+                newItem: Task
+            ): Boolean {
+                return oldItem.id == newItem.id && oldItem.description == newItem.description
+            }
+
+            override fun areContentsTheSame(
+                oldItem: Task,
+                newItem: Task
+            ): Boolean {
+                return oldItem == newItem && oldItem.description == newItem.description
+            }
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(view)
     }
 
-    override fun getItemCount() = taskList.size
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val task = taskList[position]
+        val task = getItem(position)
         holder.binding.textDescription.text = task.description
-
         setIndicators(task, holder)
     }
 
@@ -47,7 +64,7 @@ class TaskAdapter(
             }
             Status.DOING ->{
                 // Configurar a cor diferente para as setas
-                holder.binding.buttonBack.setColorFilter( ContextCompat.getColor(context, R.color.color_status_todo))
+                holder.binding.buttonBack.setColorFilter(ContextCompat.getColor(context, R.color.color_status_todo))
                 holder.binding.buttonForward.setColorFilter(ContextCompat.getColor(context, R.color.color_status_done))
                 holder.binding.buttonForward.setOnClickListener { taskSelected(task, SELECT_NEXT) }
                 holder.binding.buttonBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
@@ -56,7 +73,6 @@ class TaskAdapter(
             Status.DONE ->{
                 holder.binding.buttonForward.isVisible = false
                 holder.binding.buttonBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
-
             }
 
         }
