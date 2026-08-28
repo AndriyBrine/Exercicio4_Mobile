@@ -1,4 +1,4 @@
-package com.andbr.exercicio4.ui.auth
+package com.andbr.exercicio4.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.andbr.exercicio4.R
-import com.andbr.exercicio4.databinding.FragmentRecoverAccountBinding
+import com.andbr.exercicio4.databinding.FragmentFormTaskBinding
 import com.andbr.exercicio4.ui.util.initToolbar
 import com.andbr.exercicio4.ui.util.showBottomSheet
+import com.andbr.exercicio4.R
 
-class RecoverAccountFragment : Fragment() {
-    private var _binding: FragmentRecoverAccountBinding? = null
+class FormTaskFragment : Fragment() {
+
+    private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,8 +21,7 @@ class RecoverAccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentRecoverAccountBinding.inflate(inflater, container, false)
+        _binding = FragmentFormTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,17 +32,17 @@ class RecoverAccountFragment : Fragment() {
     }
 
     private fun initListener(){
-        binding.buttonEnviar.setOnClickListener{
+        binding.buttonSave.setOnClickListener {
             validateData()
         }
     }
 
     private fun validateData(){
-        val email = binding.edittextEmail.text.toString().trim()
-        if (email.isNotBlank()) {
+        val description = binding.editTextDescricao.text.toString().trim()
+        if (description.isNotBlank()){
             Toast.makeText(requireContext(), "Tudo OK!", Toast.LENGTH_SHORT).show()
         } else {
-            showBottomSheet(message = getString(R.string.email_empty))
+            showBottomSheet(message = getString(R.string.description_empty_form_task_fragment))
         }
     }
 
@@ -51,5 +50,4 @@ class RecoverAccountFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

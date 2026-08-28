@@ -20,43 +20,43 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail"
+            android:text="@string/email_text"
             android:textColor="@color/white"/>
 
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/edittextEmail"
+            style="@style/EditTextTheme"
             android:layout_height="48dp"
-            android:hint="Digite seu e-mail"
+            android:hint="@string/hint_edit_email"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/bg_edit_text"/>
+            android:layout_marginTop="4dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senha"
+            android:text="@string/password_empty"
             android:textColor="@color/white"
             android:layout_marginTop="16dp"/>
 
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/edittextSenha"
+            style="@style/EditTextTheme"
             android:layout_height="48dp"
             android:inputType="textPassword"
-            android:hint="Digite sua senha"
-            android:padding="10dp"
+            android:hint="@string/hint_edit_password"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_edit_text"/>
+            />
 
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonLogin"
-            android:text="Login"
-            android:textColor="@color/color_default"
+            style="@style/ButtonTheme"
+            android:text="LOGIN"
             app:backgroundTint="@null"
-            android:background="@drawable/bg_btn"
             android:layout_marginTop="16dp"/>
 
         <LinearLayout
