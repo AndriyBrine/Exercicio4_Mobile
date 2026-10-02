@@ -11,6 +11,7 @@ import com.andbr.exercicio4.R
 import com.andbr.exercicio4.databinding.FragmentLoginBinding
 import com.andbr.exercicio4.databinding.FragmentRegisterBinding
 import com.andbr.exercicio4.ui.util.showBottomSheet
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.serialization.Required
 
 
@@ -18,6 +19,8 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +34,25 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Instanciando o objeto de autenticação com o banco de dados Realtime Database
+        auth = FirebaseAuth.getInstance()
+
         initListener()
+    }
+
+    private fun checkAuth(){
+        try {
+            val currentUser = auth.currentUser
+            if (currentUser != null){
+                findNavController().navigate(R.id.action_global_homeFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_autentication)
+            }
+        } catch (e: Exception){
+            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun initListener(){
