@@ -12,7 +12,6 @@ import com.andbr.exercicio4.databinding.FragmentLoginBinding
 import com.andbr.exercicio4.databinding.FragmentRegisterBinding
 import com.andbr.exercicio4.ui.util.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.serialization.Required
 
 
 class LoginFragment : Fragment() {
@@ -76,15 +75,37 @@ class LoginFragment : Fragment() {
         if (email.isNotBlank()){
             if(senha.isNotBlank()){
                 // Comentário temporário somente para testar a validação dos dados
-                findNavController().navigate(R.id.action_global_homeFragment)
+                loginUser(email, senha)
             } else {
-                showBottomSheet(message = getString(R.string.password_empty))
+                Toast.makeText(requireContext(), "Preencha a senha!", Toast.LENGTH_SHORT).show()
             }
         } else {
-            showBottomSheet(message = getString(R.string.email_empty))
+            Toast.makeText(requireContext(), "Preencha a senha!", Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun loginUser(email:String, password:String){
+        try {
+            // Instanciando o objeto de autenticação com o Firebase
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    // Entrada do evento
+                    task ->
+                    // Execução do evento
+                    if (task.isSuccessful) {
+                        // Conseguiu autenticar com sucesso
+                        findNavController().navigate(R.id.action_global_homeFragment)
+                    } else {
+                        // Ocorreu falha na autenticação
+                        Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
+
+                    }
+
+                }
+        } catch (e: Exception) {
+
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

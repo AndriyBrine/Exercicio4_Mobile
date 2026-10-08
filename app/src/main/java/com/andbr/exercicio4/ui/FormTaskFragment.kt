@@ -10,11 +10,13 @@ import com.andbr.exercicio4.databinding.FragmentFormTaskBinding
 import com.andbr.exercicio4.ui.util.initToolbar
 import com.andbr.exercicio4.ui.util.showBottomSheet
 import com.andbr.exercicio4.R
+import com.andbr.exercicio4.data.model.Task
 
 class FormTaskFragment : Fragment() {
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tasks: Task
 
     override fun onCreateView(
         inflater: LayoutInflater,
