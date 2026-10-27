@@ -30,5 +30,7 @@
     <string name="text_button_recover_account_fragment">Enviar</string>
     <!--Form Task Fragment-->
     <string name="description_empty_form_task_fragment">Preencha uma descrição.</string>
+    <string name="text_save_sucess_form_task_fragment">Tarefa salva com sucesso!</string>
+    <string name="error_generic">Ocorreu um erro! Por favor tente novamente mais tarde.</string>
 
 </resources>
