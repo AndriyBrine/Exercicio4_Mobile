@@ -9,6 +9,8 @@ import com.andbr.exercicio4.R
 import com.andbr.exercicio4.databinding.FragmentHomeBinding
 import com.andbr.exercicio4.ui.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
@@ -26,6 +28,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceStante: Bundle?) {
         super.onViewCreated(view, savedInstanceStante)
         initTabs()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_autentication)
+        }
     }
 
     private fun initTabs() {

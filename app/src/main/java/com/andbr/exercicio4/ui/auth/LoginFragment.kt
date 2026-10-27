@@ -77,10 +77,10 @@ class LoginFragment : Fragment() {
                 // Comentário temporário somente para testar a validação dos dados
                 loginUser(email, senha)
             } else {
-                Toast.makeText(requireContext(), "Preencha a senha!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.senha_empty), Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(requireContext(), "Preencha a senha!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.email_empty), Toast.LENGTH_SHORT).show()
         }
     }
 

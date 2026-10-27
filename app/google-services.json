@@ -13,7 +13,20 @@
           "package_name": "com.andbr.exercicio4"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "456077734990-oo792bn2k69smb0o7ktsoldbf1bndu23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.andbr.exercicio4",
+            "certificate_hash": "2124ca920555381cbc4e6d63a090716c20c50979"
+          }
+        },
+        {
+          "client_id": "456077734990-2muof4pk0qkf8nehuqaa98r7rhgkh0n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCW1UptZkYpxcRe2WvPDcd_t-Swqk3OdQU"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456077734990-2muof4pk0qkf8nehuqaa98r7rhgkh0n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
